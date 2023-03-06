@@ -14,6 +14,6 @@ Here are some things developed / in progress:
 - A basic camera / aim system
 - A dash system by double tapping movement keys
 - "Launch platforms" which ejects you far away
-- A in-game console !
+- An in-game console !
 
 More to come !
