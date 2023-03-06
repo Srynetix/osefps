@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://tests/Cube.gd" type="Script" id=1]
+[ext_resource path="res://assets/packs/kenney_prototypetextures/PNG/Dark/texture_01.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 2 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=1]
+material = SubResource( 3 )
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Cube" type="RigidBody"]
+mass = 2.0
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )

@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://tests/FPSPlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tests/Gun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tests/Cube.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/FPSCamera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tests/Crosshair.gd" type="Script" id=5]
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 20, 20 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 10, 0.1, 10 )
+
+[sub_resource type="ProceduralSky" id=5]
+sky_top_color = Color( 0.788235, 0.901961, 0.964706, 1 )
+
+[sub_resource type="Environment" id=6]
+background_mode = 2
+background_sky = SubResource( 5 )
+
+[node name="Test" type="Spatial"]
+
+[node name="FPSCamera" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21499, 6.40865 )
+move_forward_action = "move_forward"
+move_backward_action = "move_backward"
+move_up_action = "move_up"
+move_down_action = "move_down"
+move_left_action = "strafe_left"
+move_right_action = "strafe_right"
+
+[node name="HUD" type="CanvasLayer" parent="FPSCamera"]
+
+[node name="MarginContainer" type="CenterContainer" parent="FPSCamera/HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Crosshair" type="Control" parent="FPSCamera/HUD/MarginContainer"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+script = ExtResource( 5 )
+size = Vector2( 25, 20 )
+
+[node name="Gun" parent="FPSCamera" instance=ExtResource( 2 )]
+
+[node name="Floor" type="StaticBody" parent="."]
+
+[node name="MeshInstance4" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 7 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="Cube" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48883, 0 )
+
+[node name="Cube2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.57331, 2.48883, 0 )
+
+[node name="Cube3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.20009, 2.48883, 4.40349 )
+
+[node name="FPSPlayer" parent="." instance=ExtResource( 1 )]
