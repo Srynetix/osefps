@@ -8,6 +8,8 @@ One day I was thinking:
 
 And there you go: *osefps*!
 
+![preview](./docs/promo.gif)
+
 It's really far from finished, but this project is one of my most ambitious one at the moment.
 Here are some things developed / in progress:
 
